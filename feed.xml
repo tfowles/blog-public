@@ -1,31 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Blog</title>
+    <title>Thomas Fowles</title>
     <link href="https://blog.thomasfowles.com/feed.xml" rel="self" />
     <link href="https://blog.thomasfowles.com" />
-    <updated>2020-09-30T21:31:12-06:00</updated>
+    <updated>2020-10-06T22:45:54-06:00</updated>
     <author>
         <name>Thomas Fowles</name>
     </author>
     <id>https://blog.thomasfowles.com</id>
 
     <entry>
-        <title>Home</title>
+        <title>Source-Controlled Publii Blog</title>
         <author>
             <name>Thomas Fowles</name>
         </author>
-        <link href="https://blog.thomasfowles.com/home/"/>
-        <id>https://blog.thomasfowles.com/home/</id>
+        <link href="https://blog.thomasfowles.com/source-controlled-publii-blog/"/>
+        <id>https://blog.thomasfowles.com/source-controlled-publii-blog/</id>
 
-        <updated>2020-09-30T21:31:12-06:00</updated>
+        <updated>2020-10-06T22:45:54-06:00</updated>
             <summary>
                 <![CDATA[
-                    Home page placeholder
+                    Enabling Full Collaboration with GitI always have projects floating through my mind. There are so many cool things to explore&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>Home page placeholder</p>
+                <h2 class="align-center">Enabling Full Collaboration with Git</h2>
+<p>I always have projects floating through my mind. There are so many cool things to explore and build, but so little time. I'm sure many of you reading can sympathize with me on this.</p>
+<p>It seems that I am drawn towards displaying these projects via the web. It makes sense; its the best way to get eyeballs on what you are doing. I learning decades ago how to use notepad to build a website. And with each project, it seems I wanted something more sophisticated. From Dreamweaver, to WordPress, to an AWS website - it always got bigger. But lately I've found that simple is better. The idea: focus on the content, not the technology. </p>
+<p>With this in mind, I found out about Publii. <a href="https://getpublii.com/" target="_blank" rel="noopener noreferrer">Publii </a>is a static CMS with a desktop GUI that helps build websites fast. I instantly loved the idea. You download Publii, setup a few settings, change some theme colors and configurations, and get to work writing great content. Even better, Publii integrates with a number of free hosting services. Instead of forking over money to host your blog, you can make it completely free! What a win.</p>
+<p>But I did have a use case it had to fulfill - I wanted it be collaborative.</p>
+<p>I don't have any friends helping me with this blog (for now, at least). But as all my projects go, I'm always thinking about the future. Scaling. Bigger. Better. And I needed to be able to collaborate if that was going to happen. I had a vision - a team member adds content to the blog, creates a pull request, and then other team members can review the pull request and help merge it to the website. Using git's collaboration tooling seemed like a great way to go, especially when I am already hosting the website on Github.</p>
+<p>I started to dig around for an answer. While searching the web, I found <a href="https://getpublii.com/docs/publii-on-multiple-computers-via-dropbox.html" target="_blank" rel="noopener noreferrer">this page detailing how to access your blog from a second computer</a>. It described how the blog content could be stored in dropbox and shared between multiple users or computers. Great. This somewhat works, but doesn't have the built-in pipeline I was looking for. </p>
+<p>I started to play around with this, and found a solution that seems to work ok. If you are looking for a solution to this, I hope this is the silver bullet you are looking for, and your google searching is over.</p>
+<h3>Setting up your blog with Github</h3>
+<p>Below are a few processes that you can follow to get Publii working within a git repository. Here are some of the pre-requisites you may want/need to install and setup on your machine:</p>
+<ul>
+<li><a href="https://getpublii.com/download/" target="_blank" rel="noopener noreferrer">Publii Desktop</a></li>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">git </a>(or <a href="https://desktop.github.com/" target="_blank" rel="noopener noreferrer">Github Desktop</a>)</li>
+</ul>
+<p>Just thought I would give you the heads up to download these things before you can finish all of the steps below.</p>
+<h4>Publii Project Folder</h4>
+<ol>
+<li>Establish where your github repos will live on your computer.<br><strong>Example</strong>: I use Github desktop. My default location is C:\Users\thoma\source\repos. You don't have to use this location, but it will be more convenient if you have multiple Publii sites.</li>
+<li>Create a <em>Publii</em> folder in your repos folder</li>
+<li>Open Publii Desktop</li>
+<li>Click the settings button (top right) &gt; App settings</li>
+<li>Navigate to Files location &gt; Sites Location<br><figure class="post__image"><img loading="lazy"  src="https://blog.thomasfowles.com/media/posts/3/Publii-Files-Locations.png" sizes="(max-width: 48em) 100vw, 100vw" srcset="https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Files-Locations-xs.png 300w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Files-Locations-sm.png 480w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Files-Locations-md.png 768w"  alt="" width="988" height="707"></figure></li>
+<li>Update the sites location value to be the <em>Publii</em> folder created in step 2</li>
+<li>Save the changes. You may need to close Publii and open it again</li>
+</ol>
+<p>Any existing project will be moved to the new Publii folder and should continue to work as normal.</p>
+<h4>Setup a Github Repository</h4>
+<p>Note: This step assumes that you have used Publii to create a new site. If you haven't done so, create a site on Publii (even if it doesn't have any posts or settings configured).</p>
+<ol>
+<li style="list-style-type: none;">
+<ol>
+<li>Open your web browser and go to <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a>. Create a new empty repository.</li>
+<li>Copy the repo url<br><figure class="post__image"><img loading="lazy"  src="https://blog.thomasfowles.com/media/posts/3/Publii-Github-Repository-Url.png" sizes="(max-width: 48em) 100vw, 100vw" srcset="https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-xs.png 300w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-sm.png 480w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-md.png 768w"  alt="" width="927" height="425"></figure></li>
+<li>Open CMD or Powershell (if on Windows). Navigate to your project folder</li>
+<li>Execute the following commands:
+<pre>git init<br>git commit -m "&lt;some commit message&gt;"<br>git remote add origin &lt;github repo url&gt;<br>git push -u origin master</pre>
+</li>
+</ol>
+</li>
+</ol>
+<p>If you struggle with setting up a repo, I have found <a href="https://kbroman.org/github_tutorial/pages/init.html" target="_blank" rel="noopener noreferrer">this explanation by Karl Broman to be helpful</a>. </p>
+<h4>Publii Server Setup</h4>
+<p>The prior steps have integrated our site with a github repository. Unfortunately Publii has a cool feature that allows it to publish to Github (or Gitlab or Netlify) automatically. This is a cool feature, but it can also break our repository system. We don't want to allow some user to accidentally override our repository contents (which will happen if someone clicks the <strong>Sync my Website</strong> button). We need to prevent this.</p>
+<figure class="post__image"><img loading="lazy"  src="https://blog.thomasfowles.com/media/posts/3/Publii-Github-Server.png" sizes="(max-width: 48em) 100vw, 100vw" srcset="https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Server-xs.png 300w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Server-sm.png 480w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Server-md.png 768w"  alt="" width="919" height="856"></figure>
+<p>We need to have some of this information populated so a couple of networking files and values are populated. You can use the above as a template. Essentially, I gave the expected values in all fields except for <em>Branch<strong> </strong></em>and <em>Token</em>. This way the configurations are correct but a connection is unable to be created.</p>
+<h4>Pushing Changes to Github</h4>
+<p>Phew. That took a bit of effort. But if you are comfortable with git, this setup should feel pretty familiar. Let's look at the last major piece to the puzzle - pushing our changes to Github.</p>
+<p>To get this working properly, you may need to change some of your habits while using Publii. It is important to understand two Publii concepts:</p>
+<p><strong>Preview</strong> - Publii has a preview folder that allows authors to view blog posts in progress. When authoring a post, an author can click the <em>Preview</em> button in the top left corner. Publii then generates the page and opens an internal browser window and displays the page. This isn't the website; this is only used for convenience for the author.</p>
+<p><strong>Output</strong> - The output folder in Publii is the actual website. Whatever shows up in the output folder will be pushed to Github pages (or whatever host you choose). It is vital that this folder contains all of your posts, files, etc.</p>
+<p>The secret? When you are ready to push your changes to Github, <strong>you must sync your website</strong>. This will re-generate and overwrite the contents of the Output folder. Based on what we did above, the output folder will generate properly, but the push to Github will fail. To get your changes to Github, you will need to follow standard git flows (e.g. Create a branch + pull request, push to origin, etc.)</p>
+<h3>Displaying the Website</h3>
+<p>The above allowed me to get my website content up and allowed me to collaborate (if I had friends). It didn't display my website. With <a href="https://pages.github.com/">Github pages</a><a href="#INTERNAL_LINK#/post/null" target="_blank" rel="noopener noreferrer"></a>, you can choose from the following options as your website source:</p>
+<ul>
+<li>Branch</li>
+<li>Folder
+<ul>
+<li>Root</li>
+<li>/docs</li>
+</ul>
+</li>
+</ul>
+<p>Publii doesn't use /docs; it uses /Output. To get this working I setup a symbolic link:</p>
+<pre><strong>Windows<br></strong>New-Item -ItemType SymbolicLink -Path ./docs/ -Target ./output/<strong><br></strong><br><strong>Mac/Linux<br></strong>ls -sf output/ docs/</pre>
+<p>Note that I have not tried to setup symbolic links on a Mac or Linux. For more information take a look at <a href="https://www.mokacoding.com/blog/symliks-in-git/" target="_blank" rel="noopener noreferrer">this page</a> and <a href="https://siongui.github.io/2017/03/30/github-pages-symlink-caveat/" target="_blank" rel="noopener noreferrer">this page</a>.</p>
+<h3>Conclusion</h3>
+<p>...And that's all. Pretty simple right? It would be nice if it was built into the Publii system to do all of this. But it's not too hard to get setup, and once its in place, you shouldn't have to touch it again. Now I can create blog posts so fast and have all the collaborators (on my personal blog) check my work and let me know what they would change before we make it live. But I do think it is pretty cool that I can have content controls on my Publii blog using common git flows (i.e. in this case, merging pull requests into master to make changes to my live website).</p>
+<p>Good luck!</p>
             ]]>
         </content>
     </entry>
