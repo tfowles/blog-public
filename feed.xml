@@ -3,7 +3,7 @@
     <title>Thomas Fowles</title>
     <link href="https://blog.thomasfowles.com/feed.xml" rel="self" />
     <link href="https://blog.thomasfowles.com" />
-    <updated>2020-10-06T22:45:54-06:00</updated>
+    <updated>2020-10-12T23:10:23-06:00</updated>
     <author>
         <name>Thomas Fowles</name>
     </author>
@@ -17,14 +17,16 @@
         <link href="https://blog.thomasfowles.com/source-controlled-publii-blog/"/>
         <id>https://blog.thomasfowles.com/source-controlled-publii-blog/</id>
 
-        <updated>2020-10-06T22:45:54-06:00</updated>
+        <updated>2020-10-12T23:10:23-06:00</updated>
             <summary>
                 <![CDATA[
+                        <img src="https://blog.thomasfowles.com/media/posts/3/publii-cms-cropped.png" alt="" />
                     Enabling Full Collaboration with GitI always have projects floating through my mind. There are so many cool things to explore&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
+                    <img src="https://blog.thomasfowles.com/media/posts/3/publii-cms-cropped.png" alt="" />
                 <h2 class="align-center">Enabling Full Collaboration with Git</h2>
 <p>I always have projects floating through my mind. There are so many cool things to explore and build, but so little time. I'm sure many of you reading can sympathize with me on this.</p>
 <p>It seems that I am drawn towards displaying these projects via the web. It makes sense; its the best way to get eyeballs on what you are doing. I learning decades ago how to use notepad to build a website. And with each project, it seems I wanted something more sophisticated. From Dreamweaver, to WordPress, to an AWS website - it always got bigger. But lately I've found that simple is better. The idea: focus on the content, not the technology. </p>
@@ -38,9 +40,11 @@
 <ul>
 <li><a href="https://getpublii.com/download/" target="_blank" rel="noopener noreferrer">Publii Desktop</a></li>
 <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">git </a>(or <a href="https://desktop.github.com/" target="_blank" rel="noopener noreferrer">Github Desktop</a>)</li>
+<li>A <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github account </a></li>
 </ul>
 <p>Just thought I would give you the heads up to download these things before you can finish all of the steps below.</p>
 <h4>Publii Project Folder</h4>
+<p>To start, we are going to open Publii and create a new website.</p>
 <ol>
 <li>Establish where your github repos will live on your computer.<br><strong>Example</strong>: I use Github desktop. My default location is C:\Users\thoma\source\repos. You don't have to use this location, but it will be more convenient if you have multiple Publii sites.</li>
 <li>Create a <em>Publii</em> folder in your repos folder</li>
@@ -54,15 +58,11 @@
 <h4>Setup a Github Repository</h4>
 <p>Note: This step assumes that you have used Publii to create a new site. If you haven't done so, create a site on Publii (even if it doesn't have any posts or settings configured).</p>
 <ol>
-<li style="list-style-type: none;">
-<ol>
-<li>Open your web browser and go to <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a>. Create a new empty repository.</li>
+<li>Open your web browser and go to <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a>. Create a new empty repository.<br><strong>Note</strong>: This repository should be set to private. If you are using free themes, then using a public repository could be fine. I still set mine up as private, as I may want to add purchased content to my site in the future.</li>
 <li>Copy the repo url<br><figure class="post__image"><img loading="lazy"  src="https://blog.thomasfowles.com/media/posts/3/Publii-Github-Repository-Url.png" sizes="(max-width: 48em) 100vw, 100vw" srcset="https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-xs.png 300w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-sm.png 480w ,https://blog.thomasfowles.com/media/posts/3/responsive/Publii-Github-Repository-Url-md.png 768w"  alt="" width="927" height="425"></figure></li>
 <li>Open CMD or Powershell (if on Windows). Navigate to your project folder</li>
 <li>Execute the following commands:
 <pre>git init<br>git commit -m "&lt;some commit message&gt;"<br>git remote add origin &lt;github repo url&gt;<br>git push -u origin master</pre>
-</li>
-</ol>
 </li>
 </ol>
 <p>If you struggle with setting up a repo, I have found <a href="https://kbroman.org/github_tutorial/pages/init.html" target="_blank" rel="noopener noreferrer">this explanation by Karl Broman to be helpful</a>. </p>
@@ -77,21 +77,40 @@
 <p><strong>Output</strong> - The output folder in Publii is the actual website. Whatever shows up in the output folder will be pushed to Github pages (or whatever host you choose). It is vital that this folder contains all of your posts, files, etc.</p>
 <p>The secret? When you are ready to push your changes to Github, <strong>you must sync your website</strong>. This will re-generate and overwrite the contents of the Output folder. Based on what we did above, the output folder will generate properly, but the push to Github will fail. To get your changes to Github, you will need to follow standard git flows (e.g. Create a branch + pull request, push to origin, etc.)</p>
 <h3>Displaying the Website</h3>
-<p>The above allowed me to get my website content up and allowed me to collaborate (if I had friends). It didn't display my website. With <a href="https://pages.github.com/">Github pages</a><a href="#INTERNAL_LINK#/post/null" target="_blank" rel="noopener noreferrer"></a>, you can choose from the following options as your website source:</p>
+<p>The above allowed me to get my website content up and allowed me to collaborate (if I had friends). It didn't display my website. My private repository is not setup to work with <a href="https://pages.github.com/">Github pages</a>. (You can have a private repository work with Github pages, but you need a paid account for that).</p>
+<p>There are two ways to get our content working with Github pages. Both require the use of <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer">Github actions</a>.</p>
+<h4>Single Repository Setup</h4>
+<p>Github pages allows for some configuration for setting up the website home directory, but it is pretty limited. We need the contents of our <strong>Output </strong>folder to be placed in a separate branch, or we need to put them in a <strong>docs</strong> folder at the root of the repository. I would suggest using a docs folder, as that would fit inline with most git workflows.</p>
+<p>I won't go into too much depth on Github actions, but essentially we can setup trigger events to start our defined actions. For this setup, I would suggest that every time something is committed to master (i.e. merged) that the action kick off. The action is simple: copy the contents of the Output folder to the docs folder. It is important that the two folders match exactly.</p>
+<p>Luckily actions can be shared in the github marketplace. I haven't tried any of these solutions, but here are a few I found with a quick Google search:</p>
 <ul>
-<li>Branch</li>
-<li>Folder
+<li><a href="https://github.com/marketplace/actions/github-pages">https://github.com/marketplace/actions/github-pages</a></li>
+<li><a href="https://github.com/marketplace/actions/github-pages-action">https://github.com/marketplace/actions/github-pages-action</a></li>
+<li><a href="https://github.com/marketplace/actions/deploy-to-github-pages">https://github.com/marketplace/actions/deploy-to-github-pages</a></li>
+</ul>
+<p>And I'm sure there are plenty more. Make sure to vet them and do additional research before just pulling one down and using it!</p>
+<h4>Dual Repository Setup</h4>
+<p>This is how I setup my website. I preferred this method, as it keeps my publii files away from the public. It also makes my website repository much simpler, as it only includes web files.</p>
+<p>To get this working, we will need to complete a few more steps.</p>
+<h5>Setup the Public Repository</h5>
+<p>Github pages won't run in a private repository (unless you have a paid account). This repository doesn't have to be public, but mine is. Go to github and setup this second repository. Be sure to go to the settings and select that you do want to use Github pages (see image below).</p>
+<figure class="post__image"><img loading="lazy"  src="https://blog.thomasfowles.com/media/posts/3/Github-Pages.png" sizes="(max-width: 48em) 100vw, 100vw" srcset="https://blog.thomasfowles.com/media/posts/3/responsive/Github-Pages-xs.png 300w ,https://blog.thomasfowles.com/media/posts/3/responsive/Github-Pages-sm.png 480w ,https://blog.thomasfowles.com/media/posts/3/responsive/Github-Pages-md.png 768w"  alt="" width="917" height="511"></figure>
+<h5>Establish Repository Secrets</h5>
+<p>We are going to be using Github actions to establish a connection from our private repository to a separate, public repository. To make this easier, we need to make the following secrets in our private repository:</p>
 <ul>
-<li>Root</li>
-<li>/docs</li>
+<li><strong>PUBLII_PUBLIC_BRANCH</strong><br>I wrote this while Github was transitioning default branches from <em>master</em> to <em>main</em>. Some actions still default to master, so this is for convenience in case you want to call your default branch something other than master.</li>
+<li><strong>PUBLII_PUBLIC_REPO</strong><br>This is the name of our second repository. Be sure to include your user or organization name (e.g. tfowles/blog-public)</li>
+<li><strong>PUBLII_PUBLIC_TOKEN</strong><br>This is a token for your user that will allow you to access the second repository. For more details on how to set this up, <a href="https://getpublii.com/docs/host-static-website-github-pages.html" target="_blank" rel="noopener noreferrer">refer to <em>Generating an access token</em> on this page</a>.</li>
 </ul>
-</li>
-</ul>
-<p>Publii doesn't use /docs; it uses /Output. To get this working I setup a symbolic link:</p>
-<pre><strong>Windows<br></strong>New-Item -ItemType SymbolicLink -Path ./docs/ -Target ./output/<strong><br></strong><br><strong>Mac/Linux<br></strong>ls -sf output/ docs/</pre>
-<p>Note that I have not tried to setup symbolic links on a Mac or Linux. For more information take a look at <a href="https://www.mokacoding.com/blog/symliks-in-git/" target="_blank" rel="noopener noreferrer">this page</a> and <a href="https://siongui.github.io/2017/03/30/github-pages-symlink-caveat/" target="_blank" rel="noopener noreferrer">this page</a>.</p>
+<h5>Create Github Actions File</h5>
+<p>In the private repository, create a file: <strong>.github &gt; workflows &gt; publish-release.yml</strong></p>
+<pre>name: Publish Release<br>on:<br>  release:<br>    types: [published]<br><br>jobs:<br>  build-artifact:<br>    runs-on: ubuntu-latest<br>    steps:<br>      <br>      - name: Checkout default branch<br>        uses: actions/checkout@v2<br>        with:<br>          path: publii-private<br>          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token<br>          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo<br>      <br>      - name: Add nojekyll file<br>        run: touch publii-private/output/.nojekyll<br>        <br>      - name: Build artifact  <br>        uses: actions/upload-artifact@v2<br>        with:<br>          name: website-content<br>          path: publii-private/output/<br>          <br>      - name: Checkout public repo<br>        uses: actions/checkout@v2<br>        with:<br>          repository: ${{ secrets.PUBLII_PUBLIC_REPO }}<br>          path: publii-public<br>          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token<br>          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo<br>          <br>      - name: Empty the repository<br>        run: |<br>            cd publii-public<br>            git rm -rf .<br>            git clean -fxd<br>            cd ..<br><br>      - name: Download artifact<br>        uses: actions/download-artifact@v2<br>        with:<br>          name: website-content<br>          path: publii-public/<br>          <br>      - name: Commit and push<br>        uses: actions-js/push@v1.2<br>        with:<br>          github_token: ${{ secrets.PUBLII_PUBLIC_TOKEN }}<br>          repository: ${{ secrets.PUBLII_PUBLIC_REPO }}<br>          branch: ${{ secrets.PUBLII_PUBLIC_BRANCH }}<br>          directory: publii-public<br>          # Allow empty commit<br>          force: true</pre>
+<p>Save the file and merge it into the default branch.</p>
+<h5>Pushing Website Changes</h5>
+<p>To move data from the Output folder over to the public repository, all you need to do is publish a release. I like this, as I can make a number of changes within the private repository, and multiple authors can view and work off of these changes, but nothing needs to get pushed out to the actual website.</p>
+<p>To publish changes to the website, simply create a release at Github.com. Be sure to publish the release. Once the release is published, the action will kick off and in just a couple of minutes the changes will be live on your website.</p>
 <h3>Conclusion</h3>
-<p>...And that's all. Pretty simple right? It would be nice if it was built into the Publii system to do all of this. But it's not too hard to get setup, and once its in place, you shouldn't have to touch it again. Now I can create blog posts so fast and have all the collaborators (on my personal blog) check my work and let me know what they would change before we make it live. But I do think it is pretty cool that I can have content controls on my Publii blog using common git flows (i.e. in this case, merging pull requests into master to make changes to my live website).</p>
+<p>...And that's all. Pretty simple right? It would be nice if it was built into the Publii system to do all of this. But it's not too hard to get setup, and once its in place, you shouldn't have to touch it again. Now I can create blog posts so fast and have all the collaborators (on my personal blog) check my work and let me know what they would change before we make it live. But I do think it is pretty cool that I can have content controls on my Publii blog using common git flows (i.e. in my case, creating release to make changes to my live website).</p>
 <p>Good luck!</p>
             ]]>
         </content>

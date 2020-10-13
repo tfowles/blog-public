@@ -6,7 +6,11 @@
 </url>
 <url>
 <loc>https://blog.thomasfowles.com/source-controlled-publii-blog/</loc>
-<lastmod>2020-10-06T22:45:54-06:00</lastmod>
+<lastmod>2020-10-12T23:10:23-06:00</lastmod>
+<image:image>
+<image:loc>https://blog.thomasfowles.com/media\posts\3/publii-cms-cropped.png</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
 <image:image>
 <image:loc>https://blog.thomasfowles.com/media\posts\3/Publii-Files-Locations.png</image:loc>
 <image:title><![CDATA[]]></image:title>
@@ -17,6 +21,10 @@
 </image:image>
 <image:image>
 <image:loc>https://blog.thomasfowles.com/media\posts\3/Publii-Github-Server.png</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://blog.thomasfowles.com/media\posts\3/Github-Pages.png</image:loc>
 <image:title><![CDATA[]]></image:title>
 </image:image>
 </url>
